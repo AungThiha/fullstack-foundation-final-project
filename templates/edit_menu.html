@@ -6,24 +6,24 @@
 </head>
 <body>
 
-<h1>Restaurant 1</h1>
-<address>No.1, Western Park</address>
+<h1>{{ restaurant.name }}</h1>
+<address>{{ restaurant.address }}</address>
 
-<h2>Edit Menu 1</h2>
+<h2>Edit {{ item.name }}</h2>
 
 <form action="edit_menu.html" method="post">
 
     <label for="name">Name</label>
-    <input id="name" type="text" name="name">
+    <input id="name" type="text" name="name" value="{{ item.name }}">
 
     <label for="price">Price</label>
-    <input type="text" id="price" name="price">
+    <input type="text" id="price" name="price" name="name" value="{{ item.price }}">
 
     <label for="course">Course</label>
-    <input type="text" id="course" name="course">
+    <input type="text" id="course" name="course" name="name" value="{{ item.price }}">
 
     <label for="description">Description</label>
-    <input type="text" id="description" name="price">
+    <input type="text" id="description" name="price" name="name" value="{{ item.description }}">
 
     <input type="submit" value="Edit">
 </form>

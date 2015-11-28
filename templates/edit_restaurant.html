@@ -6,13 +6,13 @@
 </head>
 <body>
 
-<h1>Edit Restaurant 1</h1>
+<h1>Edit {{ restaurant.name }}</h1>
 
 <form action="edit_restaurant.html" method="post">
     <label for="name">Name</label>
-    <input id="name" type="text" name="name" value="Restaurant 1">
+    <input id="name" type="text" name="name" value="{{ restaurant.name }}">
     <label for="address">Address</label>
-    <input type="text" id="address" name="address" value="No.1, Western Park">
+    <input type="text" id="address" name="address" value="{{ restaurant.address }}">
     <input type="submit" value="Edit">
 </form>
 

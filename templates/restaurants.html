@@ -8,15 +8,23 @@
 
 <h1>Restaurants In Mandalay</h1>
 
-<div>
-    <h2><a href="#">Restaurant</a></h2>
-    <address>No.1, Western Park</address>
-</div>
+{% if restaurants %}
 
-<div>
-    <h2><a href="#">Restaurant</a></h2>
-    <address>No.1, Western Park</address>
-</div>
+    <a href="#">Create new restaurant</a>
+    {% for r in restaurants %}
+        <div>
+            <h2><a href="#">{{ r.name }}</a></h2>
+            <address>{{ r.address }}</address>
+        </div>
+    {% endfor %}
+
+{% else %}
+
+    <p>There is no restaurants yet.</p>
+    <a href="#">Create new restaurant</a>
+
+{% endif %}
+
 
 </body>
 </html>
