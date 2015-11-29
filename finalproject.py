@@ -2,7 +2,6 @@ from flask import Flask, render_template
 from database_setup import Base, Restaurant, MenuItem
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import database_setup
 
 __author__ = 'aungthiha'
 
