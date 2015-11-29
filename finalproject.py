@@ -14,6 +14,11 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
+@app.route('/')
+def show_home():
+    return render_template('home.html')
+
+
 def get_restaurants():
     try:
         restaurants = session.query(Restaurant).all()
