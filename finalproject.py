@@ -44,7 +44,8 @@ def new_menu(restaurant_id):
 
 @app.route('/restaurant/<int:restaurant_id>/<int:menu_id>/edit')
 def edit_menu(restaurant_id, menu_id):
-    return render_template('edit_menu.html', item=items[menu_id-1], restaurant=restaurants[restaurant_id-1])
+    return render_template('edit_menu.html', c_list= ['Appetizer', 'Entree', 'Dessert', 'Beverage'],
+                           item=items[menu_id-1], restaurant=restaurants[restaurant_id-1])
 
 
 @app.route('/restaurant/<int:restaurant_id>/<int:menu_id>/delete')

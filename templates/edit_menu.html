@@ -20,7 +20,15 @@
     <input type="text" id="price" name="price" name="name" value="{{ item.price }}">
 
     <label for="course">Course</label>
-    <input type="text" id="course" name="course" name="name" value="{{ item.price }}">
+    {% for c in c_list %}
+
+        {% if c == item.course %}
+            <input type="radio" name="course" value="{{ c }}" checked>{{ c }}
+        {% else %}
+            <input type="radio" name="course" value="{{ c }}">{{ c }}
+        {% endif %}
+
+    {% endfor %}
 
     <label for="description">Description</label>
     <input type="text" id="description" name="price" name="name" value="{{ item.description }}">
