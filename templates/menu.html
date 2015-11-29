@@ -13,7 +13,7 @@
 
 {% if items %}
 
-    <a href="#">Create new menu item</a>
+    <a href="{{ url_for('new_menu', restaurant_id=restaurant.id) }}">Create new menu item</a>
 
     {% for i in items %}
         <div>
@@ -25,14 +25,14 @@
                 <li>{{ i.description }}</li>
             </ul>
 
-            <a href="#">Edit</a>
-            <a href="#">Delete</a>
+            <a href="{{ url_for('edit_menu', restaurant_id=restaurant.id, menu_id=i.id) }}">Edit</a>
+            <a href="{{ url_for('delete_menu', restaurant_id=restaurant.id, menu_id=i.id) }}">Delete</a>
 
         </div>
     {% endfor %}
 
 {% else %}
-    <a href="#">Create new menu item</a>
+    <a href="{{ url_for('new_menu', restaurant_id=restaurant.id) }}">Create new menu item</a>
 {% endif %}
 
 </body>

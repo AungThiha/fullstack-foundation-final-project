@@ -10,18 +10,20 @@
 
 {% if restaurants %}
 
-    <a href="#">Create new restaurant</a>
+    <a href="{{ url_for('new_restaurant') }}">Create new restaurant</a>
     {% for r in restaurants %}
         <div>
-            <h2><a href="#">{{ r.name }}</a></h2>
+            <h2><a href="{{ url_for('show_menu', restaurant_id=r.id) }}">{{ r.name }}</a></h2>
             <address>{{ r.address }}</address>
+            <a href="{{ url_for('edit_restaurant', restaurant_id=r.id) }}">Edit</a>
+            <a href="{{ url_for('delete_restaurant', restaurant_id=r.id) }}">Delete</a>
         </div>
     {% endfor %}
 
 {% else %}
 
     <p>There is no restaurants yet.</p>
-    <a href="#">Create new restaurant</a>
+    <a href="{{ url_for('new_restaurant') }}">Create new restaurant</a>
 
 {% endif %}
 
