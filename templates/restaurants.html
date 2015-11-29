@@ -8,6 +8,16 @@
 
 <h1>Restaurants In Mandalay</h1>
 
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for m in messages %}
+                <li><strong>{{ m }}</strong></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
 {% if restaurants %}
 
     <a href="{{ url_for('new_restaurant') }}">Create new restaurant</a>

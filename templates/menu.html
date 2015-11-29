@@ -9,6 +9,16 @@
 <h1>{{ restaurant.name }}</h1>
 <address>{{ restaurant.address }}</address>
 
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for m in messages %}
+                <li><strong>{{ m }}</strong></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
 <hr>
 
 {% if items %}
