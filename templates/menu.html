@@ -9,18 +9,25 @@
 <h1>{{ restaurant.name }}</h1>
 <address>{{ restaurant.address }}</address>
 
+<hr>
+
 {% if items %}
 
     <a href="#">Create new menu item</a>
 
     {% for i in items %}
         <div>
+
             <h2>{{ i.name }}</h2>
             <ul>
                 <li>{{ i.price }}</li>
                 <li>{{ i.course }}</li>
                 <li>{{ i.description }}</li>
             </ul>
+
+            <a href="#">Edit</a>
+            <a href="#">Delete</a>
+
         </div>
     {% endfor %}
 
