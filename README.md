@@ -23,7 +23,7 @@ Open up your terminal or command prompt and enter the following command to downl
 ### How To create database and add dummy data
 Make sure the current directly is where all the codes downloaded under.<br>
 In your terminal or command prompt, run the following command<br>
-* $ python restaurant_data
+* $ python restaurant_data.py
 
 You will see a sqlite database file named "restaurant.db" is created.
 
