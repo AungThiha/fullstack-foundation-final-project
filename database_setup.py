@@ -17,6 +17,15 @@ class Restaurant(Base):
     name = Column(String(80), nullable=False)
     address = Column(String(250), nullable=False)
 
+    # this property is from Restaurant
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'address': self.address,
+        }
+
 
 # Class
 class MenuItem(Base):

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 from sqlalchemy.orm.exc import NoResultFound
 from database_setup import Base, Restaurant, MenuItem
 from sqlalchemy import create_engine
@@ -14,13 +14,24 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-@app.route('/restaurants/')
-def show_restaurants():
+def get_restaurants():
     try:
         restaurants = session.query(Restaurant).all()
     except NoResultFound, e:
         print e
+    return restaurants
+
+
+@app.route('/restaurants/')
+def show_restaurants():
+    restaurants = get_restaurants()
     return render_template('restaurants.html', restaurants=restaurants)
+
+
+@app.route('/restaurants/JSON')
+def show_restaurants_json():
+    restaurants = get_restaurants()
+    return jsonify(restaurants=[r.serialize for r in restaurants])
 
 
 @app.route('/restaurant/new', methods=['GET', 'POST'])
@@ -83,6 +94,20 @@ def show_menu(restaurant_id):
         return "No restaurant with the id %d found" % restaurant_id
 
 
+@app.route('/restaurant/<int:restaurant_id>/JSON')
+def show_menu_json(restaurant_id):
+    try:
+        restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one().serialize
+        items = [i.serialize for i in session.query(MenuItem).filter_by(restaurant_id=restaurant_id).all()]
+    except NoResultFound, e:
+        print e
+    if restaurant:
+        restaurant['menus'] = items
+        return jsonify(restaurant=restaurant)
+    else:
+        return "No restaurant with the id %d found" % restaurant_id
+
+
 @app.route('/restaurant/<int:restaurant_id>/new', methods=['GET', 'POST'])
 def new_menu(restaurant_id):
     try:
@@ -141,6 +166,18 @@ def delete_menu(restaurant_id, menu_id):
     except NoResultFound, e:
         print e
         return "No Menu Item With the id %d found" % menu_id
+
+
+@app.route('/restaurant/<int:restaurant_id>/<int:menu_id>/JSON')
+def show_only_menu_json(restaurant_id, menu_id):
+    try:
+        item = session.query(MenuItem).filter_by(id=menu_id,restaurant_id=restaurant_id).one().serialize
+    except NoResultFound, e:
+        print e
+    if item:
+        return jsonify(item=item)
+    else:
+        return "No menu item with the id %d found" % menu_id
 
 
 if __name__ == '__main__':
