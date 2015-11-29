@@ -183,4 +183,5 @@ def show_only_menu_json(restaurant_id, menu_id):
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
+    print "///**** base_url is localhost:8080 ****////"
     app.run(host='',port=8080)
