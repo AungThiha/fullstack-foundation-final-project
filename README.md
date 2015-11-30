@@ -18,7 +18,7 @@ The project consists of:<br>
 
 ### How to download
 Open up your terminal or command prompt and enter the following command to download
-* $ git git@github.com:AungThiha/fullstack-foundation-final-project.git
+* $ git clone git@github.com:AungThiha/fullstack-foundation-final-project.git
 
 ### How To create database and add dummy data
 Make sure the current directly is where all the codes downloaded under.<br>
